@@ -1,0 +1,4 @@
+<% @questions.each do |q| %>
+  <p><a href="/questions/<%= q.id %>/answers"><%= q.title %></a></p>
+  <%= button_to('destroy', q, method: :delete) %>
+<% end %>
