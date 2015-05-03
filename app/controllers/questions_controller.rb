@@ -21,6 +21,17 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+    @question = Question.where(id: params[:id]).first
+    render  :edit
+  end
+
+  def update
+    question = Question.where(id: params[:id]).first
+    question.update(question_params)
+    redirect_to root_path
+  end
+
   def destroy
     q_to_destroy = Question.where(id: params[:id]).first
     q_to_destroy.destroy
