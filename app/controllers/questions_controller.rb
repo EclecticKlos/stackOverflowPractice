@@ -1,14 +1,17 @@
 class QuestionsController < ApplicationController
 
 include HTTParty
+require 'dotenv'
+Dotenv.load
 
+QUOTE_URI = 'https://api.github.com/zen'
+QUOTE_URI_WITH_QUERY = (QUOTE_URI + "?client_id=" + ENV['GITHUB_CLIENT_ID'] + "&client_secret=" + ENV['GITHUB_CLIENT_SECRET']).to_s
 
   def index
     @questions = Question.all
     @question = Question.new
-    response = HTTParty.get('https://api.github.com/zen')
-    parsed = JSON.parse(response.body)
-    if parsed["message"]
+    response = HTTParty.get(QUOTE_URI_WITH_QUERY)
+    if response.body[2] == 'm'
       @quote = ["Don't half-ass it.", "Whether you think you can or you think you can't, you're right.", "Millions of peaches. Peaches for me."].sample
     else
       @quote = response.body
