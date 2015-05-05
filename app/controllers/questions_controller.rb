@@ -38,6 +38,9 @@ class QuestionsController < ApplicationController
     redirect_to root_path
   end
 
+  def upvote
+  end
+
   def question_params
     params.require(:question).permit(:title, :content)
   end

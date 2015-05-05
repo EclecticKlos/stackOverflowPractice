@@ -13,7 +13,12 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
     resources :questions do
-      resources :answers
+      member do
+        put 'upvote'
+        put 'downvote'
+      end
+      resources :answers do
+      end
     end
 
   # Example resource route with options:
