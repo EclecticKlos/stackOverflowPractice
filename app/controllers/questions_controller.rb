@@ -1,8 +1,18 @@
 class QuestionsController < ApplicationController
 
+include HTTParty
+
+
   def index
     @questions = Question.all
     @question = Question.new
+    response = HTTParty.get('https://api.github.com/zen')
+    parsed = JSON.parse(response.body)
+    if parsed["message"]
+      @quote = ["Don't half-ass it.", "Whether you think you can or you think you can't, you're right.", "Millions of peaches. Peaches for me."].sample
+    else
+      @quote = response.body
+    end
   end
 
   def show
