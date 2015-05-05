@@ -1,4 +1,4 @@
-<% @questions.each do |q| %>
+<% @questions.reverse.each do |q| %>
   <p><a href="/questions/<%= q.id %>/answers"><%= q.title %></a><span> <%= q.votes %></span></p>
   <p><%= q.content %></p>
   <%= button_to('Upvote', upvote_question_path(q), method: :put) %>

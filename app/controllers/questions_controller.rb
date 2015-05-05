@@ -23,14 +23,24 @@ QUOTE_URI_WITH_QUERY = (QUOTE_URI + "?client_id=" + ENV['GITHUB_CLIENT_ID'] + "&
   end
 
   def create
-        p "*" *100
-    p question_params
     @question = Question.new(question_params)
-    if @question.save
-      redirect_to root_path
+    if request.xhr?
+      if @question.save
+        render layout: false, partial: "question_from_ajax.html.erb", html: @question
+        # data = render layout: false, partial: "question_display.html.erb", locals: {question: @question}
+        # respond_to do |format|
+
+      else
+        status 406
+        render :index
+      end
     else
-      status 406
-      render :index
+      if @question.save
+        redirect_to root_path
+      else
+        status 406
+        render :index
+      end
     end
   end
 
