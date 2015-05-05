@@ -1,0 +1,6 @@
+<p><a href="/questions/<%= @question.id %>/answers"><%= @question.title %></a><span> <%= @question.votes %></span></p>
+  <p><%= @question.content %></p>
+  <%= button_to('Upvote', upvote_question_path(@question), method: :put) %>
+  <%= button_to('Downvote', downvote_question_path(@question), method: :put) %>
+  <%= button_to('Destroy', @question, method: :delete) %>
+  <%= button_to('Edit', edit_question_path(@question), method: :get) %>
