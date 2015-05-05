@@ -39,6 +39,17 @@ class QuestionsController < ApplicationController
   end
 
   def upvote
+    question = Question.where(id: params[:id]).first
+    question.votes += 1
+    question.save
+    redirect_to root_path
+  end
+
+  def downvote
+    question = Question.where(id: params[:id]).first
+    question.votes -= 1
+    question.save
+    redirect_to root_path
   end
 
   def question_params
