@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'questions#index'
-  get '/questions/:id' => 'questions#show'
 
   # Example of regular route:
     # get '/' # => 'catalog#view'
@@ -13,7 +12,14 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    resources :questions do
+      member do
+        put 'upvote'
+        put 'downvote'
+      end
+      resources :answers do
+      end
+    end
 
   # Example resource route with options:
   #   resources :products do

@@ -1,0 +1,7 @@
+<% @questions.each do |q| %>
+  <p><a href="/questions/<%= q.id %>/answers"><%= q.title %></a></p>
+  <p><%= q.content %></p>
+  <%= button_to('Upvote', q, method: :put) %>
+  <%= button_to('Destroy', q, method: :delete) %>
+  <%= button_to('Edit', edit_question_path(q), method: :get) %>
+<% end %>
