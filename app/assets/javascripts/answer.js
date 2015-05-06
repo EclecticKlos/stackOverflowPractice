@@ -1,10 +1,10 @@
 $( document ).ready(function(){
 
-  $("form").on("submit", function(e){
+  $(".new_answer").on("submit", function(e){
     e.preventDefault();
 
     response = $.ajax({
-      url: '/questions',
+      url: $('.new_answer').attr('action'),
       datatype: 'json',
       type: 'post',
       data: $(this).serialize(),
@@ -12,7 +12,7 @@ $( document ).ready(function(){
 
     response.done(function( data ) {
       console.log(data)
-      $('.question-display-container').prepend(data)
+      $('.answer-display-container').prepend(data)
     })
 
   })

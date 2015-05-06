@@ -1,4 +1,4 @@
-<% @question.answers.each do |a| %>
+<% @question.answers.reverse.each do |a| %>
   <h4><%= a.title %></h4>
   <h6><%= a.content %></h6>
 <% end %>
